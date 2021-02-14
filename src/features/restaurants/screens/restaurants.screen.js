@@ -1,23 +1,20 @@
 import React from "react";
-import { SafeAreaView, Platform, StatusBar } from "react-native";
+import { FlatList } from "react-native";
 import { Searchbar } from "react-native-paper";
 import styled from "styled-components/native";
 
-import RestaurantInfoCard from "../components/restaurant-info-card.component";
-const isAndroid = Platform.OS === "android";
+import { SafeArea } from "../../../components/utility/safe-area.component";
 
-const SafeArea = styled(SafeAreaView)`
-  flex: 1;
-  ${isAndroid && `margin-top:${StatusBar.currentHeight}px`}
-`;
+import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
 
 const SearchContainer = styled.View`
   padding: 16px;
 `;
-const RestaurantListContainer = styled.View`
-  flex: 1;
-  padding: 16px;
-`;
+const RestaurantList = styled(FlatList).attrs({
+  contentContainerStyle: {
+    padding: 16
+  }
+})``;
 
 const RestaurantsScreen = () => {
   return (
@@ -25,9 +22,11 @@ const RestaurantsScreen = () => {
       <SearchContainer>
         <Searchbar />
       </SearchContainer>
-      <RestaurantListContainer>
-        <RestaurantInfoCard />
-      </RestaurantListContainer>
+      <RestaurantList
+        data={[{ name: 1 }, { name: 2 }, { name: 3 }, { name: 4 }]}
+        renderItem={() => <RestaurantInfoCard />}
+        keyExtractor={(item) => item.name}
+      />
     </SafeArea>
   );
 };
