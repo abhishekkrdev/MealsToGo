@@ -5,6 +5,7 @@ import styled from "styled-components/native";
 import { SafeArea } from "../../../components/utility/safe-area.component";
 import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
 import { RestaurantsContext } from "../../../services/restaurants/restaurants.context";
+import Spacer from "../../../components/spacer/spacer.component";
 
 const SearchContainer = styled.View`
   padding: 16px;
@@ -24,7 +25,11 @@ const RestaurantsScreen = () => {
       </SearchContainer>
       <RestaurantList
         data={restaurantContext.restaurants}
-        renderItem={() => <RestaurantInfoCard />}
+        renderItem={({ item }) => (
+          <Spacer>
+            <RestaurantInfoCard restaurant={item} />
+          </Spacer>
+        )}
         keyExtractor={(item) => item.name}
       />
     </SafeArea>
