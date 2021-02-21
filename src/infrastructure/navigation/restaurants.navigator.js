@@ -1,21 +1,12 @@
 import React from "react";
-import { Text } from "react-native";
 import {
   createStackNavigator,
   TransitionPresets
 } from "@react-navigation/stack";
 import RestaurantScreen from "../../features/restaurants/screens/restaurants.screen";
-import { SafeArea } from "../../components/utility/safe-area.component";
+import RestuarantDetailScreen from "../../features/restaurants/screens/restaurant-detail.screen";
 
 const RestaurantStack = createStackNavigator();
-
-const RestaurantDetail = () => {
-  return (
-    <SafeArea>
-      <Text>Restaurant Detail</Text>
-    </SafeArea>
-  );
-};
 
 export const RestaurantsNavigator = () => {
   return (
@@ -29,7 +20,7 @@ export const RestaurantsNavigator = () => {
       ></RestaurantStack.Screen>
       <RestaurantStack.Screen
         name="RestaurantDetail"
-        component={RestaurantDetail}
+        component={RestuarantDetailScreen}
       ></RestaurantStack.Screen>
     </RestaurantStack.Navigator>
   );
